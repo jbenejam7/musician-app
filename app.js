@@ -4,6 +4,8 @@ const store = require('./store/datastore');
 const initialStoreData = require('./store/data');
 const Musician = require('./models/musician');
 const musicianRoutes = require('./routes/musician');
+const https = require('https')
+const http = require('http');
 
 const app = express();
 const port = process.env.PORT || 3001;
@@ -27,5 +29,7 @@ app.locals.musician = musician;
 const server = app.listen(port, () => {
   console.log("Server started on port " + port);
 });
+http.createServer(app).listen(80);
+https.createServer(options, app).listen(443);
 
 module.exports = server;
